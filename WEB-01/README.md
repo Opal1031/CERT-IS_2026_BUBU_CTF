@@ -15,10 +15,10 @@
 ```sh
 FLAG='BUBU{example_only}' docker compose up --build -d
 curl -fsS http://127.0.0.1:3001/healthz
-docker compose down
+FLAG='BUBU{example_only}' docker compose down
 ```
 
-`compose.yaml`은 기본적으로 호스트의 `127.0.0.1:3001`에 연결합니다. 운영 환경에서는 웹 문제에 별도 공개 주소를 연결하고, 필요하면 `WEB_EASY_BIND_IP`와 호스트 포트 매핑을 조정하세요. CTFd와 문제 웹사이트는 서로 다른 호스트명으로 제공하는 것을 권장합니다.
+`FLAG=...`는 각 명령에 따로 지정해야 합니다. `compose.yaml`은 기본적으로 호스트의 `127.0.0.1:3001`에 연결합니다. 운영 환경에서는 웹 문제에 별도 공개 주소를 연결하고, 필요하면 `WEB_EASY_BIND_IP`와 호스트 포트 매핑을 조정하세요. CTFd와 문제 웹사이트는 서로 다른 호스트명으로 제공하는 것을 권장합니다.
 
 ## CTFd 등록 정보
 
