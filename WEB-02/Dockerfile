@@ -1,0 +1,11 @@
+FROM python:3.12-alpine
+
+WORKDIR /app
+COPY app.py ./
+COPY site/ ./site/
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PORT=3000
+USER 65532:65532
+EXPOSE 3000
+
+CMD ["python", "-B", "app.py"]

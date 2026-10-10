@@ -1,0 +1,15 @@
+services:
+  web-medium:
+    build: .
+    environment:
+      FLAG: ${FLAG:?Set FLAG in the environment before starting the service}
+      PORT: "3000"
+    ports:
+      - "${WEB_MEDIUM_BIND_IP:-127.0.0.1}:3002:3000"
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 256m
+    pids_limit: 64

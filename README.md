@@ -5,5 +5,6 @@
 | 문제 | 분야 | 소스 및 실행 안내 | 참가자 파일 | 운영 정보 |
 | --- | --- | --- | --- | --- |
 | WEB-01 · 관리자 전용 버튼 | Web | [WEB-01/README.md](WEB-01/README.md) | [WEB-01.zip](WEB-01/handout/WEB-01.zip) | [operator/WEB-01.md](operator/WEB-01.md) |
+| WEB-02 · 행사 부스 정렬기 | Web | [WEB-02/README.md](WEB-02/README.md) | [WEB-02.zip](WEB-02/handout/WEB-02.zip) | [operator/WEB-02.md](operator/WEB-02.md) |
 
 이 비공개 저장소는 운영진에게만 공유합니다. 실제 플래그와 풀이가 `operator/`에 있으므로 참가자에게는 ZIP만 제공합니다. 서버 자격증명은 저장소에 넣지 않습니다. 웹앱 배포와 CTFd 등록은 아직 하지 않았습니다.
