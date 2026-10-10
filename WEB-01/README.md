@@ -1,5 +1,7 @@
 # WEB-01 · 관리자 전용 버튼
 
+정답과 풀이: 운영진용 [`operator/WEB-01.md`](../operator/WEB-01.md)
+
 ## 웹앱 배포
 
 - 이 폴더의 `Dockerfile`로 빌드합니다. 실행 시 실제 플래그를 `FLAG` 환경변수로 주입합니다.
