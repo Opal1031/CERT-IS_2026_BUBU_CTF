@@ -1,0 +1,11 @@
+services:
+  web-easy:
+    build: .
+    environment:
+      FLAG: ${FLAG:?Set FLAG in the environment before starting the service}
+      PORT: "3000"
+    ports:
+      - "${WEB_EASY_BIND_IP:-127.0.0.1}:3001:3000"
+    read_only: true
+    security_opt:
+      - no-new-privileges:true

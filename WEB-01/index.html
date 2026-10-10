@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BUBU 행사 포털 | 공지 보관함</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #081321;
+        color: #ecf4fa;
+      }
+
+      * { box-sizing: border-box; }
+      [hidden] { display: none !important; }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        background:
+          radial-gradient(circle at 92% 4%, #174c62 0, transparent 34rem),
+          radial-gradient(circle at 5% 62%, #172d46 0, transparent 27rem),
+          #081321;
+      }
+
+      button { font: inherit; }
+
+      .shell {
+        width: min(100% - 40px, 980px);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 30px 0;
+        border-bottom: 1px solid #ffffff1c;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border: 1px solid #8de3df;
+        border-radius: 13px;
+        color: #9ff6e2;
+        font-weight: 850;
+        letter-spacing: -0.08em;
+      }
+
+      .brand-text { font-weight: 750; letter-spacing: 0.02em; }
+      .brand-text small { display: block; margin-top: 3px; color: #a1b5c8; font-size: 0.75rem; font-weight: 450; }
+
+      .session {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 14px;
+        border: 1px solid #ffffff26;
+        border-radius: 100px;
+        background: #ffffff0c;
+        color: #d0e0ea;
+        font-size: 0.86rem;
+      }
+
+      .session::before {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #80e6bf;
+        content: "";
+      }
+
+      .session strong { color: white; font-weight: 650; }
+
+      .hero { padding: 74px 0 58px; }
+
+      .eyebrow {
+        margin: 0 0 16px;
+        color: #80e6d6;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+      }
+
+      h1 {
+        max-width: 720px;
+        margin: 0;
+        font-size: clamp(2.5rem, 7vw, 4.4rem);
+        font-weight: 850;
+        letter-spacing: -0.065em;
+        line-height: 1.13;
+      }
+
+      .hero p:last-child {
+        max-width: 640px;
+        margin: 20px 0 0;
+        color: #acc2d0;
+        font-size: 1.03rem;
+        line-height: 1.7;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      h2 { margin: 0; font-size: 1.2rem; letter-spacing: -0.03em; }
+      .section-heading span { color: #91a6b8; font-size: 0.85rem; }
+
+      .notices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+      .card {
+        display: flex;
+        min-height: 225px;
+        flex-direction: column;
+        padding: 25px;
+        border: 1px solid #ffffff21;
+        border-radius: 18px;
+        background: #102338e6;
+        box-shadow: 0 18px 36px #0000001a;
+      }
+
+      .card.staff {
+        border-color: #72cfd65b;
+        background: linear-gradient(145deg, #143648, #112337 72%);
+      }
+
+      .tag {
+        align-self: flex-start;
+        padding: 6px 9px;
+        border: 1px solid #ffffff2b;
+        border-radius: 6px;
+        color: #bcd2df;
+        font-size: 0.72rem;
+        font-weight: 750;
+        letter-spacing: 0.07em;
+      }
+
+      .staff .tag { border-color: #82ddda77; color: #9aefe6; }
+      .card h3 { margin: 24px 0 8px; font-size: 1.18rem; letter-spacing: -0.03em; }
+      .card p { margin: 0; color: #a8bdcb; font-size: 0.9rem; line-height: 1.6; }
+
+      .card-foot {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: auto;
+        padding-top: 28px;
+        color: #83a0b2;
+        font-size: 0.76rem;
+      }
+
+      .open-button {
+        padding: 10px 13px;
+        border: 1px solid #84dbd5;
+        border-radius: 9px;
+        background: #8cebdc;
+        color: #09202c;
+        cursor: pointer;
+        font-size: 0.81rem;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .open-button:hover { background: #bcfff0; }
+      .open-button:disabled { cursor: wait; opacity: 0.72; }
+      .open-button:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+
+      .result {
+        margin-top: 20px;
+        padding: 20px 23px;
+        border: 1px solid #ffffff30;
+        border-radius: 14px;
+        background: #0e2435;
+        line-height: 1.6;
+      }
+
+      .result.error { border-color: #e9aa7a7a; color: #ffd8b9; }
+      .result.success { border-color: #80e6bf7a; }
+      .result.loading { border-color: #84dbd57a; color: #c5eee9; }
+      .result strong { display: block; margin-bottom: 5px; }
+      .flag { display: inline-block; margin-top: 9px; color: #9cf2db; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 1rem; overflow-wrap: anywhere; }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 72px;
+        padding: 22px 0 32px;
+        border-top: 1px solid #ffffff1c;
+        color: #8196a8;
+        font-size: 0.75rem;
+      }
+
+      @media (max-width: 740px) {
+        .notices { grid-template-columns: 1fr; }
+        .card { min-height: 190px; }
+        .hero { padding: 55px 0 46px; }
+      }
+
+      @media (max-width: 480px) {
+        .shell { width: min(100% - 28px, 980px); }
+        .topbar { gap: 12px; }
+        .brand-text small { display: none; }
+        .session { font-size: 0.72rem; }
+        footer { flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <div class="brand" aria-label="BUBU 행사 포털">
+          <span class="brand-mark">BB</span>
+          <span class="brand-text">BUBU <small>부산대 · 부경대 연합 행사 포털</small></span>
+        </div>
+        <div class="session" aria-label="현재 접속 계정">접속 계정 <strong id="accountLabel">guest · member</strong></div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="pageTitle">
+          <p class="eyebrow">BUBU EVENT · NOTICE ARCHIVE</p>
+          <h1 id="pageTitle">행사 공지<br />보관함</h1>
+          <p>참가자에게 공개된 공지와 운영진 자료를 한곳에서 확인할 수 있습니다. 필요한 공지를 찾아보세요.</p>
+        </section>
+
+        <section aria-labelledby="noticeTitle">
+          <div class="section-heading">
+            <h2 id="noticeTitle">공지 목록</h2>
+            <span>전체 3개 · 공개 2개</span>
+          </div>
+
+          <div class="notices">
+            <article class="card">
+              <span class="tag">PUBLIC · 01</span>
+              <h3>행사 일정</h3>
+              <p>등록 확인은 12:30부터 진행됩니다. 시작 전에 팀원과 자리를 확인해 주세요.</p>
+              <div class="card-foot"><span>전체 공개</span><span>행사 안내</span></div>
+            </article>
+
+            <article class="card">
+              <span class="tag">PUBLIC · 02</span>
+              <h3>참가 안내</h3>
+              <p>문제 풀이에 필요한 자료는 각 문제 페이지에서 확인할 수 있습니다.</p>
+              <div class="card-foot"><span>전체 공개</span><span>참가자 안내</span></div>
+            </article>
+
+            <article class="card staff">
+              <span class="tag">STAFF ONLY · 03</span>
+              <h3>운영진 공지</h3>
+              <p>운영진에게만 공개된 별도 공지가 있습니다.</p>
+              <div class="card-foot">
+                <span>권한 필요</span>
+                <button class="open-button" id="openStaffNotice" type="button">공지 열기 ↗</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="result" id="noticeResult" role="status" aria-live="polite" hidden>
+            <strong id="resultTitle"></strong>
+            <span id="resultMessage"></span>
+            <span class="flag" id="flagValue" hidden></span>
+          </div>
+        </section>
+      </main>
+
+      <footer><span>© 2026 BUBU Joint CTF</span><span>행사 포털 · 공지 보관함</span></footer>
+    </div>
+
+    <script>
+      window.portalSession = { name: "guest", role: "member" };
+
+      const openButton = document.getElementById("openStaffNotice");
+      const accountLabel = document.getElementById("accountLabel");
+      const result = document.getElementById("noticeResult");
+      const resultTitle = document.getElementById("resultTitle");
+      const resultMessage = document.getElementById("resultMessage");
+      const flagValue = document.getElementById("flagValue");
+
+      async function openStaffNotice() {
+        accountLabel.textContent = `${window.portalSession.name} · ${window.portalSession.role}`;
+        result.hidden = false;
+        flagValue.hidden = true;
+        flagValue.textContent = "";
+
+        if (window.portalSession.role !== "admin") {
+          result.className = "result error";
+          resultTitle.textContent = "접근 권한이 없습니다.";
+          resultMessage.textContent = "운영진 계정으로 접속한 뒤 다시 시도해 주세요.";
+          return;
+        }
+
+        openButton.disabled = true;
+        result.className = "result loading";
+        resultTitle.textContent = "공지 확인 중";
+        resultMessage.textContent = "운영진 공지를 불러오고 있습니다.";
+
+        try {
+          const response = await fetch("/api/staff-notice", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ role: window.portalSession.role })
+          });
+          if (!response.ok) throw new Error("공지에 접근할 수 없습니다.");
+          const notice = await response.json();
+          if (typeof notice.flag !== "string") throw new Error("공지 형식이 올바르지 않습니다.");
+          result.className = "result success";
+          resultTitle.textContent = "운영진 공지 확인 완료";
+          resultMessage.textContent = "공지에 기록된 확인 코드입니다.";
+          flagValue.textContent = notice.flag;
+          flagValue.hidden = false;
+        } catch (error) {
+          result.className = "result error";
+          resultTitle.textContent = "공지를 불러오지 못했습니다.";
+          resultMessage.textContent = error.message;
+        } finally {
+          openButton.disabled = false;
+        }
+      }
+
+      openButton.addEventListener("click", openStaffNotice);
+    </script>
+  </body>
+</html>
